@@ -79,7 +79,7 @@ class App extends Component {
                 ))}
                 <Route path="/note/:noteId" component={NotePageMain} />
                 <Route path="/add-note" render={props => (<AddNote
-                    folders={this.state.folders} />)} />
+                    folders={this.state.folders} history={props.history} />)} />
             </>
         );
     }
@@ -88,7 +88,8 @@ class App extends Component {
         const value = {
             notes: this.state.notes,
             folders: this.state.folders,
-            deleteNote: this.handleDeleteNote
+            deleteNote: this.handleDeleteNote,
+            refreshData: this.componentDidMount
         };
         return (
             <ApiContext.Provider value={value}>

@@ -21,8 +21,17 @@ class App extends Component {
 
     componentDidMount() {
         Promise.all([
-            fetch(`${config.API_ENDPOINT}/notes`),
-            fetch(`${config.API_ENDPOINT}/folders`)
+            fetch(`${config.API_ENDPOINT}/notes`, {
+                headers: {
+                    'Authorization': 'Bearer 95545026-4d48-11ea-b77f-2e728ce88125'
+                }
+            }),
+
+            fetch(`${config.API_ENDPOINT}/folders`, {
+                headers: {
+                    'Authorization': 'Bearer 95545026-4d48-11ea-b77f-2e728ce88125'
+                }
+            })
         ])
             .then(([notesRes, foldersRes]) => {
                 if (!notesRes.ok)
@@ -45,6 +54,18 @@ class App extends Component {
             notes: this.state.notes.filter(note => note.id !== noteId)
         });
     };
+
+    refreshFolder = (folder) => {
+        this.setState({
+            folders: [...this.state.folders, folder]
+        })
+    }
+
+    refreshNote = (note) => {
+        this.setState({
+            notes: [...this.state.notes, note]
+        })
+    }
 
     renderNavRoutes() {
         return (
@@ -89,7 +110,8 @@ class App extends Component {
             notes: this.state.notes,
             folders: this.state.folders,
             deleteNote: this.handleDeleteNote,
-            refreshData: this.componentDidMount
+            refreshFolder: this.refreshFolder,
+            refreshNote: this.refreshNote
         };
         return (
             <ApiContext.Provider value={value}>

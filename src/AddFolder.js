@@ -3,6 +3,7 @@ import config from './config';
 import ApiContext from './ApiContext';
 
 export default class AddFolder extends Component {
+
     static contextType = ApiContext
     onSubmit = (e) => {
         e.preventDefault();
@@ -13,12 +14,15 @@ export default class AddFolder extends Component {
                 name: folderName,
             }),
             headers: {
-                "content-type": "application/json",
+                "Authorization": "Bearer 95545026-4d48-11ea-b77f-2e728ce88125",
+                "content-type": "application/json"
             }
         })
-            
-            .then(e => {
-                this.context.refreshData()
+
+            .then(note => {
+                return note.json()
+            }).then(data => {
+                this.context.refreshFolder(data)
                 this.props.history.push('/')
             })
 
@@ -32,8 +36,6 @@ export default class AddFolder extends Component {
             </form>
         )
     }
-
-
 };
 
 

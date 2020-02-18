@@ -20,14 +20,10 @@ export default class Note extends React.Component {
     fetch(`${config.API_ENDPOINT}/notes/${noteId}`, {
       method: 'DELETE',
       headers: {
-        'content-type': 'application/json'
+        "Authorization": "Bearer 95545026-4d48-11ea-b77f-2e728ce88125",
+        "content-type": "application/json"
       },
     })
-      .then(res => {
-        if (!res.ok)
-          return res.json().then(e => Promise.reject(e))
-        return res.json()
-      })
       .then(() => {
         this.context.deleteNote(noteId)
         // allow parent to perform extra behaviour
@@ -73,5 +69,5 @@ export default class Note extends React.Component {
 Note.propTypes = {
   name: PropTypes.string.isRequired,
   id: PropTypes.string,
-  modified: PropTypes.string,
+  modified: PropTypes.object,
 };

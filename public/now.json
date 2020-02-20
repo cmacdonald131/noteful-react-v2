@@ -1,0 +1,7 @@
+{
+    "version": 2,
+    "alias": "macnoteful",
+    "env": {
+        "REACT_APP_API_KEY": "95545026-4d48-11ea-b77f-2e728ce88125"
+    }
+}

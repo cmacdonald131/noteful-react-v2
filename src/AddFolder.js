@@ -14,8 +14,8 @@ export default class AddFolder extends Component {
                 name: folderName,
             }),
             headers: {
-                "Authorization": "Bearer 95545026-4d48-11ea-b77f-2e728ce88125",
-                "content-type": "application/json"
+                'Authorization': 'Bearer 95545026-4d48-11ea-b77f-2e728ce88125',
+                'content-type': 'application/json'
             }
         })
 
